@@ -1,0 +1,38 @@
+.popup__closebutton {
+  position: absolute;
+  top: -50px;
+  right: -35px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  transition: opacity 200ms ease-in-out;
+}
+
+.popup__closebutton:before {
+  position: absolute;
+  height: 32px;
+  content: '';
+  left: 45%;
+  top: -5%;
+  border: 2px solid #fff;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+
+.popup__closebutton:after {
+  position: absolute;
+  height: 32px;
+  content: '';
+  left: 45%;
+  top: -5%;
+  border: 2px solid #fff;
+  background-color: #fff;
+  transform: rotate(-45deg);
+}
+
+.popup__closebutton:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
