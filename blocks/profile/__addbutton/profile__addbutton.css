@@ -1,0 +1,31 @@
+.profile__addbutton {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  background-color: #000;
+}
+
+.profile__addbutton:before {
+  position: absolute;
+  content: '';
+  height: 22px;
+  left: 50%;
+  top: 50%;
+  bottom: 11px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.profile__addbutton:after {
+  position: absolute;
+  content: '';
+  height: 22px;
+  left: 50%;
+  top: 25%;
+  border: 1px solid #fff;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  transform: rotate(90deg);
+}
