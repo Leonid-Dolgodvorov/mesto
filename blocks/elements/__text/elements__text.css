@@ -1,0 +1,6 @@
+.elements__text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 246px;
+}

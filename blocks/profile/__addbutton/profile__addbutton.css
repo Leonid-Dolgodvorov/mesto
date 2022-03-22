@@ -4,6 +4,7 @@
   height: 50px;
   border: 2px solid #fff;
   background-color: #000;
+  transition: opacity 200ms ease-in-out;
 }
 
 .profile__addbutton:before {
@@ -28,4 +29,9 @@
   background-color: #fff;
   transform: translate(-50%, -50%);
   transform: rotate(90deg);
+}
+
+.profile__addbutton:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
