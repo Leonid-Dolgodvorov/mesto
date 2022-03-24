@@ -28,7 +28,8 @@ function onDocumentKeyUp(event){
   }
 }
 
-function saveProfileInfo () {
+function saveProfileInfo (evt) {
+  evt.preventDefault();
   profileName.textContent = popupName.value;
   profileJob.textContent = popupJob.value;
   closePopup ();
