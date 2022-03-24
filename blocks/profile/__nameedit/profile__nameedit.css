@@ -2,3 +2,9 @@
   display: flex;
   align-items: baseline;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__nameedit {
+    margin: 0 0 10px;
+  }
+}

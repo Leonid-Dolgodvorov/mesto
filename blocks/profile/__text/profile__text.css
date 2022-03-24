@@ -4,3 +4,9 @@
   margin-left: 30px;
   justify-content: center;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__text {
+    margin: 24px 0 32px;
+  }
+}

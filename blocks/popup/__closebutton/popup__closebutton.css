@@ -36,3 +36,33 @@
   cursor: pointer;
   opacity: 0.8;
 }
+
+@media screen and (max-width: 399px) {
+  .popup__closebutton {
+    top: -35px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .popup__closebutton:before {
+    position: absolute;
+    height: 22px;
+    content: '';
+    left: 40%;
+    top: -10%;
+    border: 2px solid #fff;
+    background-color: #fff;
+    transform: rotate(45deg);
+  }
+  
+  .popup__closebutton:after {
+    position: absolute;
+    height: 22px;
+    content: '';
+    left: 40%;
+    top: -10%;
+    border: 2px solid #fff;
+    background-color: #fff;
+    transform: rotate(-45deg);
+  }
+}

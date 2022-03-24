@@ -2,3 +2,9 @@
   max-width: 880px;
   padding-bottom: 60px;
 }
+
+@media screen and (max-width: 767px) {
+  .page__footer {
+    padding-bottom: 36px;
+  }
+}
