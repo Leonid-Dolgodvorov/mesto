@@ -1,7 +1,7 @@
 .popup__closebutton {
   position: absolute;
-  top: -50px;
-  right: -35px;
+  top: -40px;
+  right: -40px;
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -12,7 +12,7 @@
 
 .popup__closebutton:before {
   position: absolute;
-  height: 32px;
+  height: 34px;
   content: '';
   left: 45%;
   top: -5%;
@@ -23,7 +23,7 @@
 
 .popup__closebutton:after {
   position: absolute;
-  height: 32px;
+  height: 34px;
   content: '';
   left: 45%;
   top: -5%;

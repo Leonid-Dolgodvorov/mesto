@@ -2,5 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width: 246px;
+  width: 240px;
+  padding: 5px 0;
 }

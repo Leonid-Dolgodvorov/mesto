@@ -10,7 +10,7 @@
 .profile__addbutton:before {
   position: absolute;
   content: '';
-  height: 22px;
+  height: 20px;
   left: 50%;
   top: 50%;
   bottom: 11px;
@@ -22,7 +22,7 @@
 .profile__addbutton:after {
   position: absolute;
   content: '';
-  height: 22px;
+  height: 20px;
   left: 50%;
   top: 25%;
   border: 1px solid #fff;
