@@ -8,6 +8,8 @@
   font-size: 18px;
   line-height: 22px;
   transition: opacity 200ms ease-in-out;
+  border: 0;
+  overflow: hidden;
 }
 
 .popup__savebutton:hover {

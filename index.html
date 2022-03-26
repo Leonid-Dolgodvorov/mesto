@@ -14,11 +14,11 @@
     <main>
     <section class="profile section page__profile">
       <div class="profile__info">
-        <img class="profile__avatar" src="./images/Cousteau-portrait.png" alt="Аватар профиля">
+        <img class="profile__avatar" src="./images/cousteau-portrait.png" alt="Аватар профиля">
         <div class="profile__text">
           <div class="profile__nameedit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit" type="button"></button>
+            <button class="profile__edit" type="button" aria-label="Редкатирование профиля"></button>
           </div>
           <p class="profile__job">Исследователь океана</p>
         </div>
@@ -78,15 +78,15 @@
   </div>
   <div class="popup">
     <div class="popup__container">
-      <form class="popup__form" name="popupForm">
+      <form class="popup__form" name="profileEditForm">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__name" type="text">
-        <input class="popup__job" type="text">
+        <input class="popup__input popup__input_type_name" type="text" name="profileName" placeholder="Введите ФИО" required>
+        <input class="popup__input popup__input_type_job" type="text" name="profileJob" placeholder="Введите описание" required>
         <button class="popup__savebutton" type="submit">Сохранить</button>
       </form>
       <button class="popup__closebutton" type="button"></button>
     </div>
   </div>
-  <script src="./scripts/script.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

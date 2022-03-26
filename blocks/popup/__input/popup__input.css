@@ -1,4 +1,4 @@
-.popup__job {
+.popup__input {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -6,12 +6,11 @@
   border: none;
   outline: none;
   padding-bottom: 14px;
-  margin-bottom: 46px;
   border-bottom: 1px solid rgba(0,0,0, 0.2);
 }
 
 @media screen and (max-width: 767px) {
-  .popup__job {
+  .popup__input {
     padding-bottom: 10px;
   }
 }
