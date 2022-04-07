@@ -30,11 +30,11 @@ const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const popupInputName = popup.querySelector('.popup__input_type_name');
-const popupInputJob = popup.querySelector('.popup__input_type_job');
-const popupInputPlace = popup.querySelector('.popup__input_type_place');
-const popupInputPlaceLink = popup.querySelector('.popup__input_type_place-link');
+const popupInputName = profilePopup.querySelector('.popup__input_type_name');
+const popupInputJob = profilePopup.querySelector('.popup__input_type_job');
 const addPlacePopup = document.querySelector('.popup_type_addplace');
+const popupInputPlace = addPlacePopup.querySelector('.popup__input_type_place');
+const popupInputPlaceLink = addPlacePopup.querySelector('.popup__input_type_place-link');
 /* const ESC_KEY = "Escape"; */
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
@@ -116,11 +116,11 @@ initialCards.forEach((element) => renderElement(createElement(element)));
 
 addElement.addEventListener("click", openPopup(addPlacePopup));
 
-/* const renderNewElement = (e) => {
+const renderNewElement = (e) => {
   e.preventDefault();
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(createElement(newElement));
   closePopup(addPlacePopup)();
 };
 
-popupFormPlace.addEventListener("submit", renderNewElement); */
+popupFormPlace.addEventListener("submit", renderNewElement);
