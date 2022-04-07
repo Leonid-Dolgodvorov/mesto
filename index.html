@@ -42,7 +42,7 @@
         <input class="popup__input popup__input_type_job" type="text" name="profileJob" placeholder="Введите описание" required>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close-button popup__close-button_type_ptofile" type="button"></button>
+      <button class="popup__close-button" type="button"></button>
     </div>
   </div>
   <div class="popup popup_type_addplace">
@@ -53,21 +53,20 @@
         <input class="popup__input popup__input_type_place-link" type="text" name="placeLink" placeholder="Ссылка на картинку" required>
         <button class="popup__save-button" type="submit">Создать</button>
       </form>
-      <button class="popup__close-button popup__close-button_type_place" type="button"></button>
+      <button class="popup__close-button" type="button"></button>
     </div>
   </div>
   <div class="popup popup_type_image popup_theme_dark">
-    <figure class="popup__image-on-screen">
-        <img class="popup__image" src="" alt="">
-        <figcaption class="popup__image-text"></figcaption>
-        <button class="popup__close-button popup__close-button_type_image" type="button"></button>
-    </figure>
-    </div>
+    <div class="popup__image-on-screen">
+        <img class="popup__image" src="#" alt="">
+        <span class="popup__image-text"></span>
+        <button class="popup__close-button" type="button"></button>
+    </div>    
   </div>
   <template id="element-template">
     <li class="elements__element">
         <button class="elements__delete-button" type="button"></button>
-        <img src="." alt="" class="elements__pic">
+        <img src="#" alt="" class="elements__pic">
         <div class="elements__text">
             <h2 class="elements__name"></h2>
             <button class="elements__like-button" type="button"></button>
