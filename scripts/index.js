@@ -1,31 +1,4 @@
-const initialCards = [
-  {
-    name: 'Тель-Авив',
-    link: 'https://images.unsplash.com/photo-1500990702037-7620ccb6a60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
-const popup = document.querySelector ('.popup');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
 const profileName = document.querySelector('.profile__name');
@@ -40,20 +13,21 @@ const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
 const imagePopup = document.querySelector('.popup_type_image');
 const elementsList = document.querySelector('.elements__list');
-const addElement = document.querySelector('.profile__add-button');
+const elementAdd = document.querySelector('.profile__add-button');
 const popupPic = document.querySelector('.popup__image');
 const popupPicText = document.querySelector('.popup__image-text');
 
-
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
-  const closeButton = popup.querySelector('.popup__close-button');
-  closeButton.addEventListener("click", closePopup(popup));
 };
 
-const closePopup = (popup) => () => {  
-  popup.classList.remove('popup_opened');
+const closePopup = (x) => () => {  
+  x.closest('.popup').classList.remove('popup_opened');
 };
+
+closeButtons.forEach((item) => {
+  item.addEventListener("click", closePopup(item));
+});
 
 /* function onDocumentKeyUp(event){
   if (event.key === ESC_KEY) {
@@ -61,30 +35,28 @@ const closePopup = (popup) => () => {
   }
 } */
 
-profileEditButton.addEventListener('click', () => {
+function openProfileEdit () {
   openPopup(profilePopup)();
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
-});
+}
 
-function saveProfileInfo (e) {
+function handleSaveProfile (e) {
   e.preventDefault();
   profileName.textContent = popupInputName.value;
   profileJob.textContent = popupInputJob.value;
   closePopup(profilePopup)();
 };
 
-popupFormName.addEventListener('submit', saveProfileInfo);
-
-function touchLike (e) {
+function handleLikeClick (e) {
   e.target.classList.toggle('elements__like-button_yes');
 };
 
-function deleteElement (e) {
+function handleDeleteElement (e) {
   e.target.closest(".elements__element").remove();
 };
 
-const riseElement = (e) => {
+const handleRiseElement = (e) => {
   popupPic.src = e.target.src;
   popupPic.alt = e.target.alt;
   popupPicText.textContent = e.target.alt;
@@ -102,9 +74,9 @@ const createElement = (element) => {
   newElement.querySelector(".elements__pic").src = element.link;
   newElement.querySelector(".elements__pic").alt = `Картинка ` + element.name;
    
-  likeButton.addEventListener("click", touchLike);
-  deleteButton.addEventListener("click", deleteElement);
-  elementPic.addEventListener('click', riseElement);
+  likeButton.addEventListener("click", handleLikeClick);
+  deleteButton.addEventListener("click", handleDeleteElement);
+  elementPic.addEventListener('click', handleRiseElement);
   return newElement;
 };
 
@@ -112,15 +84,18 @@ const renderElement = (createdElement) => {
   elementsList.prepend(createdElement);
 };
 
-initialCards.forEach((element) => renderElement(createElement(element)));
-
-addElement.addEventListener("click", openPopup(addPlacePopup));
-
-const renderNewElement = (e) => {
+const handleRenderNewElement = (e) => {
   e.preventDefault();
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(createElement(newElement));
   closePopup(addPlacePopup)();
+  newElement.name = '';
+  newElement.link = '';
 };
 
-popupFormPlace.addEventListener("submit", renderNewElement);
+initialCards.forEach((element) => renderElement(createElement(element)));
+
+profileEditButton.addEventListener('click', openProfileEdit);
+popupFormName.addEventListener('submit', handleSaveProfile);
+elementAdd.addEventListener("click", openPopup(addPlacePopup));
+popupFormPlace.addEventListener("submit", handleRenderNewElement);
