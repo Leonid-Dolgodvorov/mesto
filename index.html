@@ -23,7 +23,7 @@
           <p class="profile__job">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__addbutton" type="button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="elements section page__elements">
       <ul class="elements__list">        
@@ -36,41 +36,41 @@
   </div>
   <div class="popup popup_type_profile">
     <div class="popup__container">
-      <form class="popup__form profile__form_type_name" name="Новый профиль">
+      <form class="popup__form popup__form_type_name" name="Новый профиль">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__input popup__input_type_name" type="text" name="profileName" placeholder="Введите ФИО" required>
         <input class="popup__input popup__input_type_job" type="text" name="profileJob" placeholder="Введите описание" required>
-        <button class="popup__savebutton" type="submit">Сохранить</button>
+        <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__closebutton" type="button"></button>
+      <button class="popup__close-button popup__close-button_type_ptofile" type="button"></button>
     </div>
   </div>
   <div class="popup popup_type_addplace">
     <div class="popup__container">
-      <form class="popup__form profile__form_type_place" name="Новое место">
+      <form class="popup__form popup__form_type_place" name="Новое место">
         <h2 class="popup__title">Добавить место</h2>
         <input class="popup__input popup__input_type_place" type="text" name="placeName" placeholder="Название" required>
         <input class="popup__input popup__input_type_place-link" type="text" name="placeLink" placeholder="Ссылка на картинку" required>
-        <button class="popup__savebutton" type="submit">Создать</button>
+        <button class="popup__save-button" type="submit">Создать</button>
       </form>
-      <button class="popup__closebutton" type="button"></button>
+      <button class="popup__close-button popup__close-button_type_place" type="button"></button>
     </div>
   </div>
   <div class="popup popup_type_image popup_theme_dark">
     <figure class="popup__image-on-screen">
         <img class="popup__image" src="" alt="">
         <figcaption class="popup__image-text"></figcaption>
-        <button class="popup__closebutton" type="button"></button>
+        <button class="popup__close-button popup__close-button_type_image" type="button"></button>
     </figure>
     </div>
   </div>
   <template id="element-template">
     <li class="elements__element">
-        <button class="elements__deletebutton" type="button"></button>
+        <button class="elements__delete-button" type="button"></button>
         <img src="." alt="" class="elements__pic">
         <div class="elements__text">
             <h2 class="elements__name"></h2>
-            <button class="elements__likebutton" type="button"></button>
+            <button class="elements__like-button" type="button"></button>
         </div>        
     </li>
   </template>

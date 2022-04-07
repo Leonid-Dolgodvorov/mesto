@@ -40,19 +40,19 @@ const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
 const imagePopup = document.querySelector('.popup_type_image');
 const elementsList = document.querySelector('.elements__list');
-const addElement = document.querySelector('.profile__addbutton');
+const addElement = document.querySelector('.profile__add-button');
 const popupPic = document.querySelector('.popup__image');
 const popupPicText = document.querySelector('.popup__image-text');
 
 
-const openPopup = (x) => () => { 
-  x.classList.add('popup_opened');
-  const closeButton = popup.querySelector('.popup__closebutton');
-  closeButton.addEventListener("click", closePopup(x));
+const openPopup = (popup) => () => { 
+  popup.classList.add('popup_opened');
+  const closeButton = popup.querySelector('.popup__close-button');
+  closeButton.addEventListener("click", closePopup(popup));
 };
 
-const closePopup = (x) => () => {  
-  x.classList.remove('popup_opened');
+const closePopup = (popup) => () => {  
+  popup.classList.remove('popup_opened');
 };
 
 /* function onDocumentKeyUp(event){
@@ -74,37 +74,53 @@ function saveProfileInfo (e) {
   closePopup(profilePopup)();
 };
 
-/* popupFormName.addEventListener('submit', saveProfileInfo); */
+popupFormName.addEventListener('submit', saveProfileInfo);
 
 function touchLike (e) {
-  e.target.classList.toggle('elements__likebutton_yes');
+  e.target.classList.toggle('elements__like-button_yes');
 };
 
 function deleteElement (e) {
   e.target.closest(".elements__element").remove();
 };
 
-const createElement = (x) => {
+const riseElement = (e) => {
+  popupPic.src = e.target.src;
+  popupPic.alt = e.target.alt;
+  popupPicText.textContent = e.target.alt;
+  openPopup(imagePopup)();
+};
+
+const createElement = (element) => {
   const template = document.querySelector("#element-template");
   const newElement = template.content.querySelector(".elements__element").cloneNode(true);
-  const likeButton = newElement.querySelector('.elements__likebutton');
-  const deleteButton = newElement.querySelector(".elements__deletebutton");
+  const likeButton = newElement.querySelector('.elements__like-button');
+  const deleteButton = newElement.querySelector(".elements__delete-button");
   const elementPic = newElement.querySelector(".elements__pic");
 
-  newElement.querySelector(".elements__name").textContent = x.name;
-  newElement.querySelector(".elements__pic").src = x.link;
-  newElement.querySelector(".elements__pic").alt = `Картинка ` + x.name;
+  newElement.querySelector(".elements__name").textContent = element.name;
+  newElement.querySelector(".elements__pic").src = element.link;
+  newElement.querySelector(".elements__pic").alt = `Картинка ` + element.name;
    
   likeButton.addEventListener("click", touchLike);
   deleteButton.addEventListener("click", deleteElement);
-  elementPic.addEventListener('click', () => {});
+  elementPic.addEventListener('click', riseElement);
   return newElement;
 };
 
-const renderElement = (x) => {
-  elementsList.prepend(x);
+const renderElement = (createdElement) => {
+  elementsList.prepend(createdElement);
 };
 
-initialCards.forEach((x) => renderElement(createElement(x)));
+initialCards.forEach((element) => renderElement(createElement(element)));
 
 addElement.addEventListener("click", openPopup(addPlacePopup));
+
+/* const renderNewElement = (e) => {
+  e.preventDefault();
+  const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
+  renderElement(createElement(newElement));
+  closePopup(addPlacePopup)();
+};
+
+popupFormPlace.addEventListener("submit", renderNewElement); */

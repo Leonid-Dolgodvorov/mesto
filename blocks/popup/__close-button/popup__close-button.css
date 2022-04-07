@@ -1,4 +1,4 @@
-.popup__closebutton {
+.popup__close-button {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -10,7 +10,7 @@
   transition: opacity 200ms ease-in-out;
 }
 
-.popup__closebutton:before {
+.popup__close-button:before {
   position: absolute;
   height: 34px;
   content: '';
@@ -21,7 +21,7 @@
   transform: rotate(45deg);
 }
 
-.popup__closebutton:after {
+.popup__close-button:after {
   position: absolute;
   height: 34px;
   content: '';
@@ -32,19 +32,19 @@
   transform: rotate(-45deg);
 }
 
-.popup__closebutton:hover {
+.popup__close-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
 
 @media screen and (max-width: 399px) {
-  .popup__closebutton {
+  .popup__close-button {
     top: -35px;
     right: 0;
     width: 20px;
     height: 20px;
   }
-  .popup__closebutton:before {
+  .popup__close-button:before {
     position: absolute;
     height: 22px;
     content: '';
@@ -55,7 +55,7 @@
     transform: rotate(45deg);
   }
   
-  .popup__closebutton:after {
+  .popup__close-button:after {
     position: absolute;
     height: 22px;
     content: '';
