@@ -1,33 +1,32 @@
-const closeButtons = document.querySelectorAll('.popup__close-button');
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
+const closeProfilePopup = profilePopup.querySelector('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const popupInputName = profilePopup.querySelector('.popup__input_type_name');
 const popupInputJob = profilePopup.querySelector('.popup__input_type_job');
-const addPlacePopup = document.querySelector('.popup_type_addplace');
-const popupInputPlace = addPlacePopup.querySelector('.popup__input_type_place');
-const popupInputPlaceLink = addPlacePopup.querySelector('.popup__input_type_place-link');
+const placePopup = document.querySelector('.popup_type_addplace');
+const closePlacePopup = placePopup.querySelector('.popup__close-button');
+const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
+const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
 /* const ESC_KEY = "Escape"; */
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
 const imagePopup = document.querySelector('.popup_type_image');
+const closeImagePopup = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
 const popupPic = document.querySelector('.popup__image');
 const popupPicText = document.querySelector('.popup__image-text');
+const template = document.querySelector("#element-template");
 
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
 };
 
-const closePopup = (x) => () => {  
-  x.closest('.popup').classList.remove('popup_opened');
+const closePopup = (popup) => () => { 
+  popup.classList.remove('popup_opened');
 };
-
-closeButtons.forEach((item) => {
-  item.addEventListener("click", closePopup(item));
-});
 
 /* function onDocumentKeyUp(event){
   if (event.key === ESC_KEY) {
@@ -64,15 +63,14 @@ const handleRiseElement = (e) => {
 };
 
 const createElement = (element) => {
-  const template = document.querySelector("#element-template");
   const newElement = template.content.querySelector(".elements__element").cloneNode(true);
   const likeButton = newElement.querySelector('.elements__like-button');
   const deleteButton = newElement.querySelector(".elements__delete-button");
   const elementPic = newElement.querySelector(".elements__pic");
 
   newElement.querySelector(".elements__name").textContent = element.name;
-  newElement.querySelector(".elements__pic").src = element.link;
-  newElement.querySelector(".elements__pic").alt = `Картинка ` + element.name;
+  elementPic.src = element.link;
+  elementPic.alt = `Картинка ` + element.name;
    
   likeButton.addEventListener("click", handleLikeClick);
   deleteButton.addEventListener("click", handleDeleteElement);
@@ -88,14 +86,17 @@ const handleRenderNewElement = (e) => {
   e.preventDefault();
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(createElement(newElement));
-  closePopup(addPlacePopup)();
-  newElement.name = '';
-  newElement.link = '';
+  closePopup(placePopup)();
+  popupInputPlace.value = '';
+  popupInputPlaceLink.value = '';
 };
 
 initialCards.forEach((element) => renderElement(createElement(element)));
 
 profileEditButton.addEventListener('click', openProfileEdit);
+closeProfilePopup.addEventListener('click', closePopup(profilePopup));
 popupFormName.addEventListener('submit', handleSaveProfile);
-elementAdd.addEventListener("click", openPopup(addPlacePopup));
+elementAdd.addEventListener("click", openPopup(placePopup));
 popupFormPlace.addEventListener("submit", handleRenderNewElement);
+closePlacePopup.addEventListener('click', closePopup(placePopup));
+closeImagePopup.addEventListener('click', closePopup(imagePopup));
