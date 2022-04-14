@@ -9,7 +9,6 @@ const placePopup = document.querySelector('.popup_type_addplace');
 const placePopupClose = placePopup.querySelector('.popup__close-button');
 const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
 const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
-/* const ESC_KEY = "Escape"; */
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
 const imagePopup = document.querySelector('.popup_type_image');
@@ -28,11 +27,16 @@ const closePopup = (popup) => () => {
   popup.classList.remove('popup_opened');
 };
 
-/* function onDocumentKeyUp(event){
-  if (event.key === ESC_KEY) {
-      closePopup();
+function onDocumentKeyUp(event) {
+  if (event.key === "Escape") {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened)();
   }
-} */
+}
+
+function overlayClose(evt){
+  evt.target.classList.remove("popup_opened");
+}
 
 function openProfileEdit () {
   openPopup(profilePopup)();
@@ -93,6 +97,8 @@ const handleRenderNewElement = (e) => {
 
 initialCards.forEach((element) => renderElement(createElement(element)));
 
+document.addEventListener("click", overlayClose);
+document.addEventListener("keydown", onDocumentKeyUp);
 profileEditButton.addEventListener('click', openProfileEdit);
 profilePopupClose.addEventListener('click', closePopup(profilePopup));
 popupFormName.addEventListener('submit', handleSaveProfile);
