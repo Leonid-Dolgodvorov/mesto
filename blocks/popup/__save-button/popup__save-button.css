@@ -10,6 +10,7 @@
   transition: opacity 200ms ease-in-out;
   border: 0;
   overflow: hidden;
+  margin-top: 20px;
 }
 
 .popup__save-button:hover {

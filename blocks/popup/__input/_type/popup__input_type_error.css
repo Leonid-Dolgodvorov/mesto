@@ -1,6 +1,6 @@
-.popup__input-error {
+.popup__input_type_error {
   position: absolute;
-  visibility: hidden;
+  top: 40px;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
