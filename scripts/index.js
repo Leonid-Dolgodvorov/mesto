@@ -18,6 +18,7 @@ const elementAdd = document.querySelector('.profile__add-button');
 const popupPic = document.querySelector('.popup__image');
 const popupPicText = document.querySelector('.popup__image-text');
 const template = document.querySelector("#element-template");
+const newCardSubmitButton = document.querySelector('.popup__save-button_new-element');
 
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
@@ -40,8 +41,14 @@ function overlayClose(evt){
 
 function openProfileEdit () {
   openPopup(profilePopup)();
+  resetForm();
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
+}
+
+function openAddPlace () {
+  openPopup(placePopup)();
+  resetForm();
 }
 
 function handleSaveProfile (e) {
@@ -91,6 +98,7 @@ const handleRenderNewElement = (e) => {
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(createElement(newElement));
   closePopup(placePopup)();
+  disableSubmitButton(newCardSubmitButton, formForValidation);
   popupInputPlace.value = '';
   popupInputPlaceLink.value = '';
 };
@@ -102,7 +110,7 @@ document.addEventListener("keydown", onDocumentKeyUp);
 profileEditButton.addEventListener('click', openProfileEdit);
 profilePopupClose.addEventListener('click', closePopup(profilePopup));
 popupFormName.addEventListener('submit', handleSaveProfile);
-elementAdd.addEventListener("click", openPopup(placePopup));
+elementAdd.addEventListener("click", openAddPlace);
 popupFormPlace.addEventListener("submit", handleRenderNewElement);
 placePopupClose.addEventListener('click', closePopup(placePopup));
 imagePopupClose.addEventListener('click', closePopup(imagePopup));
