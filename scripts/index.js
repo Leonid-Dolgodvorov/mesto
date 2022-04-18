@@ -22,10 +22,14 @@ const newCardSubmitButton = document.querySelector('.popup__save-button_new-elem
 
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
+  popup.addEventListener("click", overlayClose);
+  document.addEventListener("keydown", onDocumentKeyUp);
 };
 
 const closePopup = (popup) => () => { 
   popup.classList.remove('popup_opened');
+  popup.removeEventListener("click", overlayClose);
+  document.removeEventListener("keydown", onDocumentKeyUp);
 };
 
 function onDocumentKeyUp(event) {
@@ -49,6 +53,7 @@ function openProfileEdit () {
 function openAddPlace () {
   openPopup(placePopup)();
   resetForm();
+  disableSubmitButton(newCardSubmitButton, formForValidation);
 }
 
 function handleSaveProfile (e) {
@@ -105,8 +110,6 @@ const handleRenderNewElement = (e) => {
 
 initialCards.forEach((element) => renderElement(createElement(element)));
 
-document.addEventListener("click", overlayClose);
-document.addEventListener("keydown", onDocumentKeyUp);
 profileEditButton.addEventListener('click', openProfileEdit);
 profilePopupClose.addEventListener('click', closePopup(profilePopup));
 popupFormName.addEventListener('submit', handleSaveProfile);
