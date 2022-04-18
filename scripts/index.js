@@ -40,7 +40,7 @@ function onDocumentKeyUp(event) {
 }
 
 function overlayClose(evt){
-  evt.target.classList.remove("popup_opened");
+  closePopup(evt.target.closest('.popup_opened'))();
 }
 
 function openProfileEdit () {
