@@ -1,4 +1,4 @@
-const formForValidation = {
+const settings = {
   form: '.popup__form',
   formInput: '.popup__input',
   buttonElement: '.popup__save-button',
@@ -89,4 +89,4 @@ const resetForm = () => {
   });
 }
 
-enableValidation(formForValidation);
+enableValidation(settings);

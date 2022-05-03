@@ -1,3 +1,6 @@
+import { initialCards } from "./cards.js";
+import { Card } from "./card.js";
+
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
 const profilePopupClose = profilePopup.querySelector('.popup__close-button');
@@ -11,16 +14,13 @@ const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
 const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
-const imagePopup = document.querySelector('.popup_type_image');
+export const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupClose = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
-const popupPic = document.querySelector('.popup__image');
-const popupPicText = document.querySelector('.popup__image-text');
-const template = document.querySelector("#element-template");
 const newCardSubmitButton = document.querySelector('.popup__save-button_new-element');
 
-const openPopup = (popup) => () => { 
+export const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
   popup.addEventListener("click", overlayClose);
   document.addEventListener("keydown", onDocumentKeyUp);
@@ -63,39 +63,13 @@ function handleSaveProfile (e) {
   closePopup(profilePopup)();
 };
 
-function handleLikeClick (e) {
-  e.target.classList.toggle('elements__like-button_yes');
-};
-
-function handleDeleteElement (e) {
-  e.target.closest(".elements__element").remove();
-};
-
-const handleRiseElement = (e) => {
-  popupPic.src = e.target.src;
-  popupPic.alt = e.target.alt;
-  popupPicText.textContent = e.target.alt;
-  openPopup(imagePopup)();
-};
-
-const createElement = (element) => {
-  const newElement = template.content.querySelector(".elements__element").cloneNode(true);
-  const likeButton = newElement.querySelector('.elements__like-button');
-  const deleteButton = newElement.querySelector(".elements__delete-button");
-  const elementPic = newElement.querySelector(".elements__pic");
-
-  newElement.querySelector(".elements__name").textContent = element.name;
-  elementPic.src = element.link;
-  elementPic.alt = `Картинка ` + element.name;
-   
-  likeButton.addEventListener("click", handleLikeClick);
-  deleteButton.addEventListener("click", handleDeleteElement);
-  elementPic.addEventListener('click', handleRiseElement);
-  return newElement;
+const createElement = (cardData) => {
+  const newElement = new Card(cardData, "#element-template")
+  return newElement.createCard();
 };
 
 const renderElement = (createdElement) => {
-  elementsList.prepend(createdElement);
+  elementsList.prepend(createElement(createdElement));
 };
 
 const handleRenderNewElement = (e) => {
