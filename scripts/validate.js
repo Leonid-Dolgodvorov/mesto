@@ -1,4 +1,4 @@
-const settings = {
+export const settings = {
   form: '.popup__form',
   formInput: '.popup__input',
   buttonElement: '.popup__save-button',
@@ -71,12 +71,12 @@ const enableValidation = (config) => {
 });
 }
 
-const disableSubmitButton = (buttonElement, config) => {
+export const disableSubmitButton = (buttonElement, config) => {
   buttonElement.classList.add(config.inactiveButtonClass);
   buttonElement.disabled = true;
 }
 
-const resetForm = () => {
+export const resetForm = () => {
   const errorInputList = Array.from(document.querySelectorAll('.popup__input'));
   const errorList = Array.from(document.querySelectorAll('.popup__error'));
   errorList.forEach((errorElement) => {

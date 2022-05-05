@@ -11,7 +11,6 @@ export class Card {
   }
 
   createCard() {
-    console.log(this);
     this._card = this._getTemplate();
     this._cardImage = this._card.querySelector(".elements__pic");
     this._setEventListeners();
@@ -32,7 +31,7 @@ export class Card {
   }
 
   _handleDeleteCard() {
-    this._card.closest(".elements__element").remove();
+    this._card.remove();
   }
 
   _handleImage() {

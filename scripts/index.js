@@ -1,5 +1,6 @@
 import { initialCards } from "./cards.js";
 import { Card } from "./card.js";
+/* import { settings, disableSubmitButton, resetForm } from "./validate.js"; */
 
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -18,7 +19,7 @@ export const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupClose = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
-const newCardSubmitButton = document.querySelector('.popup__save-button_new-element');
+/* const newCardSubmitButton = document.querySelector('.popup__save-button_new-element'); */
 
 export const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
@@ -39,13 +40,15 @@ function onDocumentKeyUp(event) {
   }
 }
 
-function overlayClose(evt){
+const overlayClose = (evt) => {
+  if (evt.target === evt.currentTarget) {
   closePopup(evt.target.closest('.popup_opened'))();
+  }
 }
 
 function openProfileEdit () {
   openPopup(profilePopup)();
-  resetForm();
+  /* resetForm(); */
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
 }
@@ -53,7 +56,7 @@ function openProfileEdit () {
 function openAddPlace () {
   openPopup(placePopup)();
   resetForm();
-  disableSubmitButton(newCardSubmitButton, formForValidation);
+  /* disableSubmitButton(newCardSubmitButton, settings); */
 }
 
 function handleSaveProfile (e) {
@@ -68,21 +71,21 @@ const createElement = (cardData) => {
   return newElement.createCard();
 };
 
-const renderElement = (createdElement) => {
-  elementsList.prepend(createElement(createdElement));
+const renderElement = (cardData) => {
+  elementsList.prepend(createElement(cardData));
 };
 
 const handleRenderNewElement = (e) => {
   e.preventDefault();
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
-  renderElement(createElement(newElement));
+  renderElement(newElement);
   closePopup(placePopup)();
-  disableSubmitButton(newCardSubmitButton, formForValidation);
+  /* disableSubmitButton(newCardSubmitButton, settings); */
   popupInputPlace.value = '';
   popupInputPlaceLink.value = '';
 };
 
-initialCards.forEach((element) => renderElement(createElement(element)));
+initialCards.forEach((cardData) => renderElement(cardData));
 
 profileEditButton.addEventListener('click', openProfileEdit);
 profilePopupClose.addEventListener('click', closePopup(profilePopup));
