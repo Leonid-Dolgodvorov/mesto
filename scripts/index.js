@@ -1,6 +1,6 @@
 import { initialCards } from "./cards.js";
 import { Card } from "./card.js";
-import { settings, disableSubmitButton, resetForm } from "./validate.js";
+import { FormValidation } from "./validate.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -19,7 +19,24 @@ const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupClose = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
-const newCardSubmitButton = document.querySelector('.popup__save-button_new-element');
+
+const settings = {
+  form: '.popup__form',
+  formInput: '.popup__input',
+  buttonElement: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_invalid',
+  errorClass: 'popup__error_active',
+}
+
+const newProfileForm = document.forms.newProfileForm;
+const newPlaceForm = document.forms.newPlaceForm;
+
+const newProfileFormValidation = new FormValidation(settings, newProfileForm);
+newProfileFormValidation.enableValidation();
+
+const newPlaceFormValidation = new FormValidation(settings, newPlaceForm);
+newPlaceFormValidation.enableValidation();
 
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
@@ -48,15 +65,15 @@ const overlayClose = (evt) => {
 
 function openProfileEdit () {
   openPopup(profilePopup)();
-  resetForm();
+  newProfileFormValidation.resetForm;
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
 }
 
 function openAddPlace () {
   openPopup(placePopup)();
-  resetForm();
-  disableSubmitButton(newCardSubmitButton, settings);
+  newPlaceFormValidation.resetForm;
+  newPlaceFormValidation.disableSubmitButton();
 }
 
 function handleSaveProfile (e) {
@@ -80,7 +97,7 @@ const handleRenderNewElement = (e) => {
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(newElement);
   closePopup(placePopup)();
-  disableSubmitButton(newCardSubmitButton, settings);
+  newPlaceFormValidation.disableSubmitButton();
   popupInputPlace.value = '';
   popupInputPlaceLink.value = '';
 };
