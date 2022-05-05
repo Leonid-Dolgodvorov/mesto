@@ -1,5 +1,3 @@
-/* проверка для pusha с ноута
- */
 import { initialCards } from "./cards.js";
 import { Card } from "./card.js";
 import { FormValidation } from "./validate.js";
@@ -65,20 +63,22 @@ const overlayClose = (evt) => {
   }
 }
 
-function openProfileEdit () {
+const openProfileEdit = () => {
   openPopup(profilePopup)();
   newProfileFormValidation.resetForm;
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
 }
 
-function openAddPlace () {
+const openAddPlace = () => {
   openPopup(placePopup)();
   newPlaceFormValidation.resetForm;
   newPlaceFormValidation.disableSubmitButton();
+  popupInputPlace.value ='';
+  popupInputPlaceLink.value ='';
 }
 
-function handleSaveProfile (e) {
+const handleSaveProfile = (e) => {
   e.preventDefault();
   profileName.textContent = popupInputName.value;
   profileJob.textContent = popupInputJob.value;
@@ -100,8 +100,6 @@ const handleRenderNewElement = (e) => {
   renderElement(newElement);
   closePopup(placePopup)();
   newPlaceFormValidation.disableSubmitButton();
-  popupInputPlace.value = '';
-  popupInputPlaceLink.value = '';
 };
 
 initialCards.forEach((cardData) => renderElement(cardData));
