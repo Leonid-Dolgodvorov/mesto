@@ -1,3 +1,5 @@
+/* проверка для pusha с ноута
+ */
 import { initialCards } from "./cards.js";
 import { Card } from "./card.js";
 import { settings, disableSubmitButton, resetForm } from "./validate.js";
