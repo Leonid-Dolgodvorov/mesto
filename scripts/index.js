@@ -33,7 +33,7 @@ const closePopup = (popup) => () => {
   document.removeEventListener("keydown", onDocumentKeyUp);
 };
 
-function onDocumentKeyUp(event) {
+const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
     const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened)();
