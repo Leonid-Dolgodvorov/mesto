@@ -1,9 +1,12 @@
-import { openPopup, imagePopup } from "./index.js";
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, imagePopupOpenFunction) {
     this._data = data;
     this._cardSelector = cardSelector;
+    this._imagePopupOpenFunction = imagePopupOpenFunction;
+  }
+
+  _openImagePopup = () => { 
+    this._imagePopupOpenFunction() 
   }
 
   _getTemplate = () => {
@@ -35,12 +38,11 @@ export class Card {
   }
 
   _handleImage = () => {
-    console.log(this);
     const image = document.querySelector(".popup__image");
     const imageDescription = document.querySelector(".popup__image-text");
     image.src = this._cardImage.src;
     image.alt = `Картинка ` + this._cardImage.alt;
     imageDescription.textContent = this._cardImage.alt;
-    openPopup(imagePopup);
+    this._openImagePopup();
   }
 }

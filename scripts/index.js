@@ -1,6 +1,6 @@
 import { initialCards } from "./cards.js";
 import { Card } from "./card.js";
-/* import { settings, disableSubmitButton, resetForm } from "./validate.js"; */
+import { settings, disableSubmitButton, resetForm } from "./validate.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -15,13 +15,13 @@ const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
 const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
-export const imagePopup = document.querySelector('.popup_type_image');
+const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupClose = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
-/* const newCardSubmitButton = document.querySelector('.popup__save-button_new-element'); */
+const newCardSubmitButton = document.querySelector('.popup__save-button_new-element');
 
-export const openPopup = (popup) => () => { 
+const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
   popup.addEventListener("click", overlayClose);
   document.addEventListener("keydown", onDocumentKeyUp);
@@ -48,7 +48,7 @@ const overlayClose = (evt) => {
 
 function openProfileEdit () {
   openPopup(profilePopup)();
-  /* resetForm(); */
+  resetForm();
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
 }
@@ -56,7 +56,7 @@ function openProfileEdit () {
 function openAddPlace () {
   openPopup(placePopup)();
   resetForm();
-  /* disableSubmitButton(newCardSubmitButton, settings); */
+  disableSubmitButton(newCardSubmitButton, settings);
 }
 
 function handleSaveProfile (e) {
@@ -67,7 +67,7 @@ function handleSaveProfile (e) {
 };
 
 const createElement = (cardData) => {
-  const newElement = new Card(cardData, "#element-template")
+  const newElement = new Card(cardData, "#element-template", openPopup(imagePopup))
   return newElement.createCard();
 };
 
@@ -80,7 +80,7 @@ const handleRenderNewElement = (e) => {
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(newElement);
   closePopup(placePopup)();
-  /* disableSubmitButton(newCardSubmitButton, settings); */
+  disableSubmitButton(newCardSubmitButton, settings);
   popupInputPlace.value = '';
   popupInputPlaceLink.value = '';
 };
