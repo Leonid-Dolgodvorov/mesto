@@ -27,13 +27,14 @@ export class Card {
   }
 
   _setEventListeners = () => {
-    this._card.querySelector(".card__like-button").addEventListener("click", this._handleLikeClick);
+    this.likeButton = this._card.querySelector(".card__like-button");
+    this.likeButton.addEventListener("click", this._handleLikeClick);
     this._card.querySelector(".card__delete-button").addEventListener("click", this._handleDeleteCard);
     this._cardImage.addEventListener("click", this._handleImage);
   }
 
   _handleLikeClick = () => {
-    this._card.querySelector(".card__like-button").classList.toggle("card__like-button_yes");
+    this.likeButton.classList.toggle("card__like-button_yes");
   }
 
   _handleDeleteCard = () => {
