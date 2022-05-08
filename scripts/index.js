@@ -1,22 +1,19 @@
 import { initialCards } from "./cards.js";
-import { Card } from "./card.js";
-import { FormValidation } from "./validate.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
-const profilePopupClose = profilePopup.querySelector('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const popupInputName = profilePopup.querySelector('.popup__input_type_name');
 const popupInputJob = profilePopup.querySelector('.popup__input_type_job');
-const placePopup = document.querySelector('.popup_type_addplace');
-const placePopupClose = placePopup.querySelector('.popup__close-button');
+const placePopup = document.querySelector('.popup_type_add-place');
 const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
 const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
 const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupClose = imagePopup.querySelector('.popup__close-button');
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
 
@@ -26,17 +23,18 @@ const settings = {
   buttonElement: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_invalid',
-  errorClass: 'popup__error_active',
+  errorClass: '.popup__error',
+  errorActiveClass: 'popup__error_active', 
 }
 
 const newProfileForm = document.forms.newProfileForm;
 const newPlaceForm = document.forms.newPlaceForm;
 
-const newProfileFormValidation = new FormValidation(settings, newProfileForm);
-newProfileFormValidation.enableValidation();
+const newProfileFormValidator = new FormValidator(settings, newProfileForm);
+newProfileFormValidator.enableValidation();
 
-const newPlaceFormValidation = new FormValidation(settings, newPlaceForm);
-newPlaceFormValidation.enableValidation();
+const newPlaceFormValidator = new FormValidator(settings, newPlaceForm);
+newPlaceFormValidator.enableValidation();
 
 const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
@@ -58,24 +56,25 @@ const onDocumentKeyUp = (event) => {
 }
 
 const overlayClose = (evt) => {
-  if (evt.target === evt.currentTarget) {
-  closePopup(evt.target.closest('.popup_opened'))();
+  if (evt.target === evt.currentTarget ||
+  evt.target.classList.contains("popup__close-button")) {
+    closePopup(evt.currentTarget)();
   }
 }
 
 const openProfileEdit = () => {
-  openPopup(profilePopup)();
-  newProfileFormValidation.resetForm;
+  newProfileFormValidator.resetForm();
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
+  openPopup(profilePopup)();
 }
 
 const openAddPlace = () => {
-  openPopup(placePopup)();
-  newPlaceFormValidation.resetForm;
-  newPlaceFormValidation.disableSubmitButton();
+  newPlaceFormValidator.resetForm();
+  newPlaceFormValidator.disableSubmitButton();
   popupInputPlace.value ='';
   popupInputPlaceLink.value ='';
+  openPopup(placePopup)();
 }
 
 const handleSaveProfile = (e) => {
@@ -98,16 +97,13 @@ const handleRenderNewElement = (e) => {
   e.preventDefault();
   const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
   renderElement(newElement);
+  newPlaceFormValidator.disableSubmitButton();
   closePopup(placePopup)();
-  newPlaceFormValidation.disableSubmitButton();
 };
 
 initialCards.forEach((cardData) => renderElement(cardData));
 
 profileEditButton.addEventListener('click', openProfileEdit);
-profilePopupClose.addEventListener('click', closePopup(profilePopup));
 popupFormName.addEventListener('submit', handleSaveProfile);
 elementAdd.addEventListener("click", openAddPlace);
 popupFormPlace.addEventListener("submit", handleRenderNewElement);
-placePopupClose.addEventListener('click', closePopup(placePopup));
-imagePopupClose.addEventListener('click', closePopup(imagePopup));

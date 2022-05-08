@@ -16,7 +16,7 @@
       <div class="profile__info">
         <img class="profile__avatar" src="./images/portrait-cousteau.png" alt="Аватар профиля">
         <div class="profile__text">
-          <div class="profile__nameedit">
+          <div class="profile__name-edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit" type="button" aria-label="Редактирование профиля"></button>
           </div>
@@ -39,11 +39,30 @@
       <form class="popup__form popup__form_type_name" name="newProfileForm">
         <h2 class="popup__title">Редактировать профиль</h2>
         <div class="popup__input-wrapper">
-          <input id="name" class="popup__input popup__input_type_name" type="text" name="profileName" placeholder="Введите ФИО" autocomplete="off" minlength="2" maxlength="40" required>
+          <input 
+            id="name" 
+            class="popup__input popup__input_type_name" 
+            type="text" name="profileName" 
+            placeholder="Введите ФИО" 
+            autocomplete="off" 
+            minlength="2" 
+            maxlength="40" 
+            required
+          >
           <span class="popup__error popup__error_type_name"></span>
         </div>
         <div class="popup__input-wrapper">
-          <input id="job" class="popup__input popup__input_type_job" type="text" name="profileJob" placeholder="Введите описание" autocomplete="off" minlength="2" maxlength="200" required>
+          <input 
+            id="job" 
+            class="popup__input popup__input_type_job" 
+            type="text" 
+            name="profileJob" 
+            placeholder="Введите описание" 
+            autocomplete="off" 
+            minlength="2" 
+            maxlength="200" 
+            required
+          >
           <span class="popup__error popup__error_type_job"></span>
         </div>
         <button class="popup__save-button" type="submit">Сохранить</button>
@@ -51,16 +70,34 @@
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
-  <div class="popup popup_type_addplace">
+  <div class="popup popup_type_add-place">
     <div class="popup__container">
       <form class="popup__form popup__form_type_place" name="newPlaceForm">
         <h2 class="popup__title">Добавить место</h2>
         <div class="popup__input-wrapper">
-          <input id="place" class="popup__input popup__input_type_place" type="text" name="placeName" placeholder="Название" autocomplete="off" minlength="2" maxlength="30" required>
+          <input 
+            id="place" 
+            class="popup__input popup__input_type_place" 
+            type="text" 
+            name="placeName" 
+            placeholder="Название" 
+            autocomplete="off" 
+            minlength="2" 
+            maxlength="30" 
+            required
+          >
           <span class="popup__error popup__error_type_place"></span>
         </div>
         <div class="popup__input-wrapper">
-          <input id="link" class="popup__input popup__input_type_place-link" type="url" name="placeLink" placeholder="Ссылка на картинку" autocomplete="off" required>
+          <input 
+            id="link" 
+            class="popup__input popup__input_type_place-link" 
+            type="url" 
+            name="placeLink" 
+            placeholder="Ссылка на картинку" 
+            autocomplete="off" 
+            required
+          >
           <span id="link-error" class="popup__error popup__error_type_link"></span>
         </div>
         <button class="popup__save-button popup__save-button_new-element" type="submit">Создать</button>
@@ -76,12 +113,12 @@
     </div>    
   </div>
   <template id="element-template">
-    <li class="elements__element">
-        <button class="elements__delete-button" type="button"></button>
-        <img class="elements__pic" src="#" alt="" >
-        <div class="elements__text">
-            <h2 class="elements__name"></h2>
-            <button class="elements__like-button" type="button"></button>
+    <li class="card">
+        <button class="card__delete-button" type="button"></button>
+        <img class="card__pic" src="#" alt="" >
+        <div class="card__text">
+            <h2 class="card__name"></h2>
+            <button class="card__like-button" type="button"></button>
         </div>        
     </li>
   </template>

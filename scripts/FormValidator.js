@@ -1,4 +1,4 @@
-export class FormValidation {
+export class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
@@ -12,13 +12,13 @@ _inputErrorActive = (inputElement, errorMessage) => {
   const errorElement = this._form.querySelector(`.popup__error_type_${inputElement.id}`);
   inputElement.classList.add(this._config.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(this._config.errorClass);
+  errorElement.classList.add(this._config.errorActiveClass);
 };
 
 _inputErrorHide = (inputElement) => {
   const errorElement = this._form.querySelector(`.popup__error_type_${inputElement.id}`);
   inputElement.classList.remove(this._config.inputErrorClass);
-  errorElement.classList.remove(this._config.errorClass);
+  errorElement.classList.remove(this._config.errorActiveClass);
   errorElement.textContent = '';
 };
 
@@ -42,8 +42,7 @@ _hasInvalidInput = (inputList) => {
 
 _toggleButtonState = () => {
   if (this._hasInvalidInput(this._inputList)) {
-    this._button.classList.add(this._config.inactiveButtonClass);
-    this._button.disabled = true;
+    this.disableSubmitButton();
   } else {
     this._button.classList.remove(this._config.inactiveButtonClass);
     this._button.disabled = false;
@@ -70,15 +69,15 @@ disableSubmitButton = () => {
 }
 
 resetForm = () => {
-  const errorInputList = Array.from(document.querySelectorAll('.popup__input'));
-  const errorList = Array.from(document.querySelectorAll('.popup__error'));
-  errorList.forEach((errorElement) => {
-    errorElement.classList.remove('popup__error_active');
-    errorElement.textContent = "";
+  const errorInput = Array.from(this._form.querySelectorAll(this._config.formInput));
+  errorInput.forEach((inputForm) => {
+    inputForm.classList.remove(this._config.inputErrorClass);
   });
-  errorInputList.forEach((inputElement) => {
-    inputElement.classList.remove('popup__input_invalid');
-    inputElement.value = "";
+
+  const error = Array.from(this._form.querySelectorAll(this._config.errorClass));
+  error.forEach((errorMessage) => {
+    errorMessage.classList.remove(this._config.inputErrorClass);
+    errorMessage.textContent = '';
   });
 }
 }
