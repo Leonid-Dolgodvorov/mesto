@@ -3,9 +3,8 @@ export class FormValidator {
     this._config = config;
     this._form = form;
     this._button = this._form.querySelector(this._config.buttonElement);
-    this._inputList = Array.from(
-      this._form.querySelectorAll(this._config.formInput)
-    );
+    this._inputList = Array.from(this._form.querySelectorAll(this._config.formInput));
+    this._errorList = Array.from(this._form.querySelectorAll(this._config.errorClass));
   }
 
 _inputErrorActive = (inputElement, errorMessage) => {
@@ -69,14 +68,11 @@ disableSubmitButton = () => {
 }
 
 resetForm = () => {
-  const errorInput = Array.from(this._form.querySelectorAll(this._config.formInput));
-  errorInput.forEach((inputForm) => {
+  this._inputList.forEach((inputForm) => {
     inputForm.classList.remove(this._config.inputErrorClass);
   });
-
-  const error = Array.from(this._form.querySelectorAll(this._config.errorClass));
-  error.forEach((errorMessage) => {
-    errorMessage.classList.remove(this._config.inputErrorClass);
+  this._errorList.forEach((errorMessage) => {
+    errorMessage.classList.remove(this._config.errorActiveClass);
     errorMessage.textContent = '';
   });
 }
