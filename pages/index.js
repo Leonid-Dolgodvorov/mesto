@@ -1,6 +1,7 @@
-import { initialCards } from "./cards.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import { initialCards } from "../utils/constants.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import FormValidator from "../components/FormValidator.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
 const profilePopup = document.querySelector('.popup_type_profile');
@@ -84,6 +85,16 @@ const handleSaveProfile = (e) => {
   closePopup(profilePopup)();
 };
 
+const newSection = new Section({ 
+  items: initialCards, 
+  renderer: (item) => {
+    const card = new Card (item, "#element-template", openPopup(imagePopup));
+    newSection.addItem(card.createCard(), 'end');
+  }
+}, '.elements__list');
+
+newSection.rendererItems();
+
 const createElement = (cardData) => {
   const newElement = new Card(cardData, "#element-template", openPopup(imagePopup))
   return newElement.createCard();
@@ -100,8 +111,6 @@ const handleRenderNewElement = (e) => {
   newPlaceFormValidator.disableSubmitButton();
   closePopup(placePopup)();
 };
-
-initialCards.forEach((cardData) => renderElement(cardData));
 
 profileEditButton.addEventListener('click', openProfileEdit);
 popupFormName.addEventListener('submit', handleSaveProfile);
