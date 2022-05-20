@@ -2,6 +2,8 @@ import { initialCards } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
@@ -38,7 +40,7 @@ newProfileFormValidator.enableValidation();
 const newPlaceFormValidator = new FormValidator(settings, newPlaceForm);
 newPlaceFormValidator.enableValidation();
 
-const openPopup = (popup) => () => { 
+/* const openPopup = (popup) => () => { 
   popup.classList.add('popup_opened');
   popup.addEventListener("click", overlayClose);
   document.addEventListener("keydown", onDocumentKeyUp);
@@ -84,19 +86,23 @@ const handleSaveProfile = (e) => {
   profileName.textContent = popupInputName.value;
   profileJob.textContent = popupInputJob.value;
   closePopup(profilePopup)();
-};
+}; */
 
 const newSection = new Section({ 
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card (item, "#element-template", openPopup(imagePopup));
+    const card = new Card (item, "#element-template", () => {
+
+    });
     newSection.addItem(card.createCard(), 'end');
   }
 }, '.elements__list');
 
 newSection.rendererItems();
 
-const createElement = (cardData) => {
+
+
+/* const createElement = (cardData) => {
   const newElement = new Card(cardData, "#element-template", openPopup(imagePopup))
   return newElement.createCard();
 };
@@ -116,4 +122,4 @@ const handleRenderNewElement = (e) => {
 profileEditButton.addEventListener('click', openProfileEdit);
 popupFormName.addEventListener('submit', handleSaveProfile);
 elementAdd.addEventListener("click", openAddPlace);
-popupFormPlace.addEventListener("submit", handleRenderNewElement);
+popupFormPlace.addEventListener("submit", handleRenderNewElement); */

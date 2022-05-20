@@ -1,12 +1,8 @@
 export default class Card {
-  constructor(data, cardSelector, imagePopupOpenFunction) {
+  constructor(data, cardSelector, handleCardClick) {
     this._data = data;
     this._cardSelector = cardSelector;
-    this._imagePopupOpenFunction = imagePopupOpenFunction;
-  }
-
-  _openImagePopup = () => { 
-    this._imagePopupOpenFunction() 
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate = () => {
@@ -40,14 +36,5 @@ export default class Card {
   _handleDeleteCard = () => {
     this._card.remove();
     this._card = null;
-  }
-
-  _handleImage = () => {
-    const image = document.querySelector(".popup__image");
-    const imageDescription = document.querySelector(".popup__image-text");
-    image.src = this._data.link;
-    image.alt = `Картинка ` + this._data.name;
-    imageDescription.textContent = this._data.name;
-    this._openImagePopup();
   }
 }
