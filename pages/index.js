@@ -1,6 +1,7 @@
 import { initialCards } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
 import FormValidator from "../components/FormValidator.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
