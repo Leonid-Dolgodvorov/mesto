@@ -10,18 +10,18 @@ export default class Popup {
   }
 
   _overlayClose = (evt) => {
-      if (evt.target.classList.contains('popup')) {
-        this.close();
-      }
+    if (evt.target.classList.contains('popup')) {
+      this.close();
     }
+  }
 
-  open = () => {
+  open() {
     this._popup.classList.add('popup_opened');
     this._popup.addEventListener("click", this._overlayClose());
     this._popup.addEventListener("keydown", this._handleEscClose());
   }
 
-  close = () => {
+  close() {
     this._popup.classList.remove('popup_opened');
     this._popup.removeEventListener("click", this._overlayClose());
     this._popup.removeEventListener("keydown", this._handleEscClose());

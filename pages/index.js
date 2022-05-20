@@ -4,20 +4,21 @@ import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
 const profileEditButton = document.querySelector ('.profile__edit');
-const profilePopup = document.querySelector('.popup_type_profile');
+/* const profilePopup = document.querySelector('.popup_type_profile'); */
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const popupInputName = profilePopup.querySelector('.popup__input_type_name');
-const popupInputJob = profilePopup.querySelector('.popup__input_type_job');
+/* const popupInputName = profilePopup.querySelector('.popup__input_type_name');
+const popupInputJob = profilePopup.querySelector('.popup__input_type_job'); */
 const placePopup = document.querySelector('.popup_type_add-place');
-const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
-const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link');
+/* const popupInputPlace = placePopup.querySelector('.popup__input_type_place');
+const popupInputPlaceLink = placePopup.querySelector('.popup__input_type_place-link'); */
 const popupFormName = document.querySelector('.popup__form_type_name');
 const popupFormPlace = document.querySelector('.popup__form_type_place');
-const imagePopup = document.querySelector('.popup_type_image');
+/* const imagePopup = document.querySelector('.popup_type_image'); */
 const elementsList = document.querySelector('.elements__list');
 const elementAdd = document.querySelector('.profile__add-button');
 
@@ -88,11 +89,13 @@ const handleSaveProfile = (e) => {
   closePopup(profilePopup)();
 }; */
 
+const imagePopup = new PopupWithImage('.popup_type_image');
+
 const newSection = new Section({ 
   items: initialCards, 
   renderer: (item) => {
     const card = new Card (item, "#element-template", () => {
-
+      imagePopup.open(item);
     });
     newSection.addItem(card.createCard(), 'end');
   }
@@ -100,7 +103,12 @@ const newSection = new Section({
 
 newSection.rendererItems();
 
+/* const userInfo = new UserInfo({ username, job }); */
 
+const profilePopup = new PopupWithForm('.popup_type_profile', (profileInfo) => {
+  userInfo.setUserInfo(profileInfo);
+  profilePopup.close();
+});
 
 /* const createElement = (cardData) => {
   const newElement = new Card(cardData, "#element-template", openPopup(imagePopup))
