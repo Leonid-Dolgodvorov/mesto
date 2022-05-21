@@ -94,7 +94,7 @@ const imagePopup = new PopupWithImage('.popup_type_image');
 const newSection = new Section({ 
   items: initialCards, 
   renderer: (item) => {
-  const card = new Card (item, "#element-template", () => {
+    const card = new Card (item, "#element-template", () => {
       imagePopup.open(item);
     });
     newSection.addItem(card.createCard(), 'end');
@@ -121,7 +121,7 @@ const placePopup = new PopupWithForm(
   '.popup_type_add-place', 
   {
     handleSubmit: (newPlaceInfo) => {
-
+      
     placePopup.close();
   }
 })
