@@ -41,67 +41,19 @@ newProfileFormValidator.enableValidation();
 const newPlaceFormValidator = new FormValidator(settings, newPlaceForm);
 newPlaceFormValidator.enableValidation();
 
-/* const openPopup = (popup) => () => { 
-  popup.classList.add('popup_opened');
-  popup.addEventListener("click", overlayClose);
-  document.addEventListener("keydown", onDocumentKeyUp);
-};
-
-const closePopup = (popup) => () => { 
-  popup.classList.remove('popup_opened');
-  popup.removeEventListener("click", overlayClose);
-  document.removeEventListener("keydown", onDocumentKeyUp);
-};
-
-const onDocumentKeyUp = (event) => {
-  if (event.key === "Escape") {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened)();
-  }
-}
-
-const overlayClose = (evt) => {
-  if (evt.target === evt.currentTarget ||
-  evt.target.classList.contains("popup__close-button")) {
-    closePopup(evt.currentTarget)();
-  }
-}
-
-const openProfileEdit = () => {
-  newProfileFormValidator.resetForm();
-  popupInputName.value = profileName.textContent;
-  popupInputJob.value = profileJob.textContent;
-  openPopup(profilePopup)();
-}
-
-const openAddPlace = () => {
-  newPlaceFormValidator.resetForm();
-  newPlaceFormValidator.disableSubmitButton();
-  popupInputPlace.value ='';
-  popupInputPlaceLink.value ='';
-  openPopup(placePopup)();
-}
-
-const handleSaveProfile = (e) => {
-  e.preventDefault();
-  profileName.textContent = popupInputName.value;
-  profileJob.textContent = popupInputJob.value;
-  closePopup(profilePopup)();
-}; */
-
 const imagePopup = new PopupWithImage('.popup_type_image');
 
-const newSection = new Section({ 
+const cardList = new Section({ 
   items: initialCards, 
   renderer: (item) => {
     const card = new Card (item, "#element-template", () => {
       imagePopup.open(item);
     });
-    newSection.addItem(card.createCard(), 'end');
+    cardList.addItem(card.createCard(), 'end');
   }
 }, '.elements__list');
 
-newSection.rendererItems();
+cardList.rendererItems();
 
 const userInfo = new UserInfo({ 
   nameSelector: profileName, 
@@ -121,40 +73,37 @@ const placePopup = new PopupWithForm(
   '.popup_type_add-place', 
   {
     handleSubmit: (newPlaceInfo) => {
+      const inputPlaceInfo = {
+        name: newPlaceInfo.place,
+        link: newPlaceInfo.link
+      }
       
-    placePopup.close();
+      const addedCard = new Card(inputPlaceInfo, "#element-template", () => {
+        imagePopup.open(inputPlaceInfo);
+      }
+      )
+
+      cardList.addItem(addedCard.createCard(), 'start');
+      placePopup.close();
+    }
   }
-})
-
-/* const createElement = (cardData) => {
-  const newElement = new Card(cardData, "#element-template", openPopup(imagePopup))
-  return newElement.createCard();
-};
-
-const renderElement = (cardData) => {
-  elementsList.prepend(createElement(cardData));
-};
-
-const handleRenderNewElement = (e) => {
-  e.preventDefault();
-  const newElement = { name: popupInputPlace.value, link: popupInputPlaceLink.value };
-  renderElement(newElement);
-  newPlaceFormValidator.disableSubmitButton();
-  closePopup(placePopup)();
-}; */
-
-/* popupFormName.addEventListener('submit', handleSaveProfile); */
-/* popupFormPlace.addEventListener("submit", handleRenderNewElement); */
+)
 
 profileEditButton.addEventListener('click', () => { 
   const currentUserInfo = userInfo.getUserInfo();
   popupInputName.value = currentUserInfo.name;
   popupInputJob.value = currentUserInfo.job;
+  newProfileFormValidator.disableSubmitButton();
+  newProfileFormValidator.resetForm();
 
   profilePopup.open()
-  });
+});
 
-elementAdd.addEventListener("click", () => { placePopup.open() });
+elementAdd.addEventListener("click", () => {
+  newPlaceFormValidator.disableSubmitButton();
+  newPlaceFormValidator.resetForm();
+  placePopup.open() 
+});
 
 imagePopup.setEventListeners();
 profilePopup.setEventListeners();
