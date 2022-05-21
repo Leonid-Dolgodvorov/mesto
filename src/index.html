@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="page">
   <div class="page__container">
     <header class="header section page__header">
-      <img class="header__logo" src="./images/header-logo.svg" alt="логотип Mesto">
+      <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="логотип Mesto">
       </header>
     <main>
     <section class="profile section page__profile">
       <div class="profile__info">
-        <img class="profile__avatar" src="./images/portrait-cousteau.png" alt="Аватар профиля">
+        <img class="profile__avatar" src="<%=require('./images/portrait-cousteau.png')%>" alt="Аватар профиля">
         <div class="profile__text">
           <div class="profile__name-edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -108,7 +107,7 @@
   </div>
   <div class="popup popup_type_image popup_theme_dark">
     <div class="popup__image-on-screen">
-        <img class="popup__image" src="#" alt="">
+        <img class="popup__image" alt="">
         <span class="popup__image-text"></span>
         <button class="popup__close-button" type="button"></button>
     </div>    
@@ -116,13 +115,12 @@
   <template id="element-template">
     <li class="card">
         <button class="card__delete-button" type="button"></button>
-        <img class="card__pic" src="#" alt="" >
+        <img class="card__pic" alt="" >
         <div class="card__text">
             <h2 class="card__name"></h2>
             <button class="card__like-button" type="button"></button>
         </div>        
     </li>
   </template>
-  <script type="module" src="./pages/index.js"></script>  
 </body>
 </html>
