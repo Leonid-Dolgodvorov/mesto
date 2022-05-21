@@ -43,13 +43,17 @@ newPlaceFormValidator.enableValidation();
 
 const imagePopup = new PopupWithImage('.popup_type_image');
 
+const renderCard = (data) => {
+  const newCard = new Card(data, "#element-template", () => {
+    imagePopup.open(data);
+  })
+  return newCard.createCard();
+}
+
 const cardList = new Section({ 
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card (item, "#element-template", () => {
-      imagePopup.open(item);
-    });
-    cardList.addItem(card.createCard(), 'end');
+    cardList.addItem(renderCard(item), 'end');
   }
 }, '.elements__list');
 
@@ -77,13 +81,8 @@ const placePopup = new PopupWithForm(
         name: newPlaceInfo.place,
         link: newPlaceInfo.link
       }
-      
-      const addedCard = new Card(inputPlaceInfo, "#element-template", () => {
-        imagePopup.open(inputPlaceInfo);
-      }
-      )
+      cardList.addItem(renderCard(inputPlaceInfo), 'start');
 
-      cardList.addItem(addedCard.createCard(), 'start');
       placePopup.close();
     }
   }
