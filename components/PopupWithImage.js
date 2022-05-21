@@ -12,6 +12,6 @@ export default class PopupWithImage extends Popup {
       this._image.alt = `Картинка ` + name;
       this._imageDescription = name;
 
-      super.open(); 
+      super.open();
     }
 }
