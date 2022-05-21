@@ -24,3 +24,22 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
+
+export const profileEditButton = document.querySelector ('.profile__edit');
+export const profileName = document.querySelector('.profile__name');
+export const profileJob = document.querySelector('.profile__job');
+export const popupInputName = document.querySelector('.popup__input_type_name');
+export const popupInputJob = document.querySelector('.popup__input_type_job');
+export const elementAdd = document.querySelector('.profile__add-button');
+export const newProfileForm = document.forms.newProfileForm;
+export const newPlaceForm = document.forms.newPlaceForm;
+
+export const validationSettings = {
+  form: '.popup__form',
+  formInput: '.popup__input',
+  buttonElement: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_invalid',
+  errorClass: '.popup__error',
+  errorActiveClass: 'popup__error_active', 
+}
