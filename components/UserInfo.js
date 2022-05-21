@@ -11,8 +11,8 @@ export default class UserInfo {
       };
   }
 
-  setUserInfo({ nameSelector, jobSelector }) {
-      this._nameSelector.textContent = name;
-      this._jobSelector.textContent = job;
-  }  
+  setUserInfo({ name, job }) {
+    this._nameSelector.textContent = name;
+    this._jobSelector.textContent = job;      
+  }
 }

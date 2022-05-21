@@ -103,17 +103,24 @@ const newSection = new Section({
 
 newSection.rendererItems();
 
-const profilePopup = new PopupWithForm({ 
-  popupSelector: '.popup_type_profile', 
-  handleSubmit: (profileInfo) => {
-    userInfo.setUserInfo(profileInfo);
+const userInfo = new UserInfo({ 
+  nameSelector: profileName, 
+  jobSelector: profileJob
+});
+
+const profilePopup = new PopupWithForm( 
+  '.popup_type_profile', 
+  {
+    handleSubmit: (input) => {
+    userInfo.setUserInfo(input);
     profilePopup.close();
   }
 });
 
-const placePopup = new PopupWithForm({
-  popupSelector: '.popup_type_add-place', 
-  handleSubmit: (newPlaceInfo) => {
+const placePopup = new PopupWithForm(
+  '.popup_type_add-place', 
+  {
+    handleSubmit: (newPlaceInfo) => {
 
     placePopup.close();
   }
@@ -140,13 +147,9 @@ const handleRenderNewElement = (e) => {
 /* popupFormPlace.addEventListener("submit", handleRenderNewElement); */
 
 profileEditButton.addEventListener('click', () => { 
-  const currentUserInfo = new UserInfo({ 
-    nameSelector: profileName, 
-    jobSelector: profileJob
-  });
-  const currentUser = currentUserInfo.getUserInfo();
-  popupInputName.value = currentUser.name;
-  popupInputJob.value = currentUser.job;
+  const currentUserInfo = userInfo.getUserInfo();
+  popupInputName.value = currentUserInfo.name;
+  popupInputJob.value = currentUserInfo.job;
 
   profilePopup.open()
   });
