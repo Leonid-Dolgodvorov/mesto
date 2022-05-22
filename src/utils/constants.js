@@ -26,8 +26,6 @@ export const initialCards = [
 ]; 
 
 export const profileEditButton = document.querySelector ('.profile__edit');
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
 export const popupInputName = document.querySelector('.popup__input_type_name');
 export const popupInputJob = document.querySelector('.popup__input_type_job');
 export const elementAdd = document.querySelector('.profile__add-button');

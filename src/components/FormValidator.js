@@ -69,11 +69,7 @@ disableSubmitButton = () => {
 
 resetForm = () => {
   this._inputList.forEach((inputForm) => {
-    inputForm.classList.remove(this._config.inputErrorClass);
-  });
-  this._errorList.forEach((errorMessage) => {
-    errorMessage.classList.remove(this._config.errorActiveClass);
-    errorMessage.textContent = '';
+    this._inputErrorHide(inputForm);
   });
 }
 }

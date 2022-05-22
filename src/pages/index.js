@@ -8,8 +8,6 @@ import FormValidator from "../components/FormValidator.js";
 import { 
   initialCards,
   profileEditButton,
-  profileName,
-  profileJob,
   popupInputName,
   popupInputJob,
   elementAdd,
@@ -43,8 +41,8 @@ const cardList = new Section({
 cardList.rendererItems();
 
 const userInfo = new UserInfo({ 
-  nameSelector: profileName, 
-  jobSelector: profileJob
+  nameSelector: '.profile__name', 
+  jobSelector: '.profile__job'
 });
 
 const profilePopup = new PopupWithForm( 
