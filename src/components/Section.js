@@ -14,9 +14,13 @@ export default class Section {
     } 
   }
 
-  rendererItems = () => {
+  renderItems = (userData) => {
     this._items.forEach(item => {
-      this._renderer(item);
+      this._renderer(item, userData);
     });
+  }
+
+  setRenderedItems(data) {
+    this._items = data;
   }
 }

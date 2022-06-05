@@ -5,3 +5,9 @@
   overflow: hidden;
   object-fit: cover;
 }
+
+.profile__avatar:hover {
+  background-color: #000;
+  opacity: 0.8;
+  cursor: url(../../../images/pencil.png) 0 22, pointer;
+}

@@ -13,13 +13,13 @@
     <main>
     <section class="profile section page__profile">
       <div class="profile__info">
-        <img class="profile__avatar" src="<%=require('./images/portrait-cousteau.png')%>" alt="Аватар профиля">
+        <img class="profile__avatar" src="" alt="Аватар профиля">
         <div class="profile__text">
           <div class="profile__name-edit">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit" type="button" aria-label="Редактирование профиля"></button>
           </div>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__job"></p>
         </div>
       </div>
       <button class="profile__add-button" type="button"></button>
@@ -33,6 +33,28 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
   </div>
+
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+      <form class="popup__form popup__form_type_avatar" name="newAvatarForm">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <div class="popup__input-wrapper">
+          <input 
+            id="avatar"
+            class="popup__input popup__input_type_avatar-link"
+            type="url" 
+            name="avatar"
+            placeholder="Ссылка на картинку"
+            autocomplete="off" 
+            required>
+          <span id="avatar-error" class="popup__error popup__error_type_avatar"></span>
+        </div>
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <form class="popup__form popup__form_type_name" name="newProfileForm">
@@ -70,6 +92,7 @@
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
+
   <div class="popup popup_type_add-place">
     <div class="popup__container">
       <form class="popup__form popup__form_type_place" name="newPlaceForm">
@@ -100,11 +123,22 @@
           >
           <span id="link-error" class="popup__error popup__error_type_link"></span>
         </div>
-        <button class="popup__save-button popup__save-button_new-element" type="submit">Создать</button>
+        <button class="popup__save-button" type="submit">Создать</button>
       </form>
       <button class="popup__close-button" type="button"></button>
     </div>
   </div>
+
+  <div class="popup popup_type_delete">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" ></button>
+      <form class="popup__form_type_delete" name="delete">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__save-button" type="submit" >Да</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_type_image popup_theme_dark">
     <div class="popup__image-on-screen">
         <img class="popup__image" alt="">
@@ -112,13 +146,17 @@
         <button class="popup__close-button" type="button"></button>
     </div>    
   </div>
-  <template id="element-template">
+
+  <template id="card-template">
     <li class="card">
         <button class="card__delete-button" type="button"></button>
         <img class="card__pic" alt="" >
         <div class="card__text">
             <h2 class="card__name"></h2>
-            <button class="card__like-button" type="button"></button>
+            <div class="card__likes-wrapper">
+              <button class="card__like-button" type="button"></button>
+              <p class="card__likes-quantity">0</p>
+            </div>
         </div>        
     </li>
   </template>
