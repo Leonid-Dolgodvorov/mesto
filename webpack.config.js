@@ -20,7 +20,8 @@ module.exports = {
     port: 8080
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: '/node_modules/'

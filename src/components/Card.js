@@ -52,10 +52,9 @@ export default class Card {
   }
 
   setLike(data) {
-    console.log(data);
     this._data.likes = data.likes;
-    likeCountCard();
-    _toggleLike();
+    this.likeCountCard();
+    this._toggleLike();
   }
 
   likeCountCard() {

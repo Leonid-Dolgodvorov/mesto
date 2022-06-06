@@ -54,8 +54,8 @@ const deletePopup = new PopupDeleteConfirm('.popup_type_delete', ( { card, cardI
   api.deleteCard(cardId)
     .then(() => {
       card.remove();
-      loading('.popup_type_delete', false)
       deletePopup.close();
+      loading('.popup_type_delete', false)
       })
     .catch((error) => {
       console.log(error);
@@ -75,19 +75,17 @@ const renderCard = (data, userData) => {
         },
       handleLikeClick: (cardId) => {
         if (!newCard.checkLike()) {
-          console.log(newCard.checkLike())
           api.addLike(cardId)
             .then((data) => {
-              newCard.likeCountCard(data);
+              newCard.setLike(data);
             })
             .catch((err) => {
               console.log(err);
             });
         } else {
-          console.log(newCard.checkLike())
           api.deleteLike(cardId)
             .then((data) => {
-              newCard.likeCountCard(data);
+              newCard.setLike(data);
             })
             .catch((err) => {
               console.log(err);
