@@ -74,7 +74,6 @@ const renderCard = (data, userData) => {
         deletePopup.open({ card, cardId });
         },
       handleLikeClick: (cardId) => {
-/*         console.log(newCard.checkLike()); */
         if (!newCard.checkLike()) {
           api.addLike(cardId)
             .then((data) => {
