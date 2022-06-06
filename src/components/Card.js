@@ -46,9 +46,17 @@ export default class Card {
   }
 
   checkLike() {
-    return this._data.likes.some((item) => {
-      item._id === this._userData._id;
+/*     return Boolean(this._data.likes.find((like) => {
+      like._id === this._userData._id;
+    })) */
+    return this._data.likes.some((like) => {
+      like._id === this._userData._id;
     });
+/*     this._data.likes.forEach((like) => {
+      console.log(like._id);
+      console.log(this._userData._id)
+    });
+    return false; */
   }
 
   setLike(data) {
