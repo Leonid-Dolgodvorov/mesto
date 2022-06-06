@@ -9,7 +9,7 @@
 .profile{align-items:center;display:flex;justify-content:space-between}@media screen and (max-width:767px){.profile{flex-direction:column}}
 .page__profile{max-width:880px;padding:40px 0 52px}@media screen and (max-width:767px){.page__profile{padding:41px 0 36px}}
 .profile__info{display:flex}@media screen and (max-width:767px){.profile__info{align-items:center;flex-direction:column}}
-.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;overflow:hidden;width:120px}
+.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;overflow:hidden;width:120px}.profile__avatar:hover{background-color:#000;cursor:url(93c771f5f8582261951d.png) 0 22,pointer;opacity:.8}
 .profile__text{display:flex;flex-direction:column;justify-content:center;margin-left:30px}@media screen and (max-width:767px){.profile__text{margin:24px 0 32px}}
 .profile__name-edit{align-items:baseline;display:flex}@media screen and (max-width:767px){.profile__name-edit{margin:0 0 10px}}
 .profile__name{font-size:42px;font-weight:500;line-height:48px;margin:5px 20px 5px 0;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:767px){.profile__name{font-size:27px;line-height:33px;margin:0 10px 0 28px;max-width:250px;text-align:center}}
@@ -24,7 +24,9 @@
 .card__pic{height:282px;-o-object-fit:cover;object-fit:cover;width:100%}
 .card__text{align-items:baseline;display:flex;justify-content:space-between;margin:20px 0;padding:5px 0;width:240px}
 .card__name{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__likes-wrapper{display:flex;flex-direction:column}
 .card__like-button{background-color:transparent;background-image:url(7913ddfd147a48616b09.svg);border:none;height:19px;padding:0;transition:opacity .2s ease-in-out;width:22px}.card__like-button:hover{cursor:pointer;opacity:.5}
+.card__likes-quantity{color:#000;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin:0;padding:0;text-align:center}
 .card__like-button_yes{background-image:url(fe17a515669479b1e649.svg)}
 .footer{display:block}
 .page__footer{max-width:880px;padding-bottom:60px}@media screen and (max-width:767px){.page__footer{padding-bottom:36px}}
@@ -51,6 +53,9 @@
 
 
 
+
+
+.popup__form_type_delete{padding:50px 0;width:80%}
 .popup_theme_dark{background-color:rgba(0,0,0,.9)}
 .popup__image-on-screen{align-self:center;display:flex;flex-direction:column;justify-self:center;margin:0 auto;position:relative}
 .popup__image{max-height:75vh;max-width:75vw}
