@@ -74,8 +74,9 @@ const renderCard = (data, userData) => {
         deletePopup.open({ card, cardId });
         },
       handleLikeClick: (cardId) => {
-        if (newCard.checkLike()) {
-          api.deleteLike(cardId)
+        if (!newCard.checkLike()) {
+          console.log(newCard.checkLike())
+          api.addLike(cardId)
             .then((data) => {
               newCard.likeCountCard(data);
             })
@@ -83,7 +84,8 @@ const renderCard = (data, userData) => {
               console.log(err);
             });
         } else {
-          api.addLike(cardId)
+          console.log(newCard.checkLike())
+          api.deleteLike(cardId)
             .then((data) => {
               newCard.likeCountCard(data);
             })
