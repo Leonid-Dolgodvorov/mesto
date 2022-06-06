@@ -21,7 +21,8 @@ export default class Card {
     this._cardImage.src = this._data.link;
     this._cardImage.alt = this._data.name;
     this._card.querySelector(".card__name").textContent = this._data.name;
-    this.setLike(this._data);
+    this.likeCountCard();
+    this._toggleLike();
     this._setEventListeners();
     this._setDeleteCard();
     return this._card;
@@ -45,15 +46,23 @@ export default class Card {
   }
 
   checkLike() {
-    const checkId = (item) => {
+    return this._data.likes.some((item) => {
       item._id === this._userData._id;
-    }
-    return this._data.likes.some(checkId);
+    });
   }
 
   setLike(data) {
-    this._data = data;
+    console.log(data);
+    this._data.likes = data.likes;
+    likeCountCard();
+    _toggleLike();
+  }
+
+  likeCountCard() {
     this._card.querySelector('.card__likes-quantity').textContent = this._data.likes.length;
+  }
+
+  _toggleLike() {
     if (this.checkLike()) {
       this._card.querySelector('.card__like-button').classList.add('card__like-button_yes');
     } else {

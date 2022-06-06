@@ -77,7 +77,7 @@ const renderCard = (data, userData) => {
         if (newCard.checkLike()) {
           api.deleteLike(cardId)
             .then((data) => {
-              newCard.setLike(data);
+              newCard.likeCountCard(data);
             })
             .catch((err) => {
               console.log(err);
@@ -85,7 +85,7 @@ const renderCard = (data, userData) => {
         } else {
           api.addLike(cardId)
             .then((data) => {
-              newCard.setLike(data);
+              newCard.likeCountCard(data);
             })
             .catch((err) => {
               console.log(err);
