@@ -132,7 +132,7 @@ const avatarPopup = new PopupWithForm(
       loading('.popup_type_avatar', true);
       api.editAvatar(input.avatar)
         .then(data => {
-          document.querySelector('.profile__avatar').src=input.avatar;
+          userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
           avatarPopup.close();
         })
         .catch((err) => {
