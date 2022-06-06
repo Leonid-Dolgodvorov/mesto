@@ -31,7 +31,7 @@ const loading = (popupSelector, processInProgress) => {
   const saveButton = document.querySelector(popupSelector).querySelector('.popup__save-button');
 
   if (processInProgress) {
-    saveButton.textContent = 'Загрузка…';
+    saveButton.textContent = 'Сохранение…';
   }
   else {
     saveButton.textContent = 'Сохранить';
@@ -55,12 +55,13 @@ const deletePopup = new PopupDeleteConfirm('.popup_type_delete', ( { card, cardI
     .then(() => {
       card.remove();
       deletePopup.close();
-      loading('.popup_type_delete', false)
       })
     .catch((error) => {
       console.log(error);
-      loading('.popup_type_delete', false)
       })
+    .finally(() => {
+      loading('.popup_type_delete', false);
+      })  
   }
 )
 
@@ -132,12 +133,13 @@ const avatarPopup = new PopupWithForm(
       api.editAvatar(input.avatar)
         .then(data => {
           document.querySelector('.profile__avatar').src=input.avatar;
-          loading('.popup_type_avatar', false);
-          profilePopup.close();
+          avatarPopup.close();
         })
         .catch((err) => {
-          loading('.popup_type_avatar', false);
           console.log(err)
+        })
+        .finally(() => {
+          loading('.popup_type_avatar', false);
         })
     }
 });
@@ -153,13 +155,14 @@ const profilePopup = new PopupWithForm(
       })
         .then((data) => {
           userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
-          loading('.popup_type_profile', false);
           profilePopup.close();
         })
         .catch((err) => {
-          loading('.popup_type_profile', false);
           console.log(err)
         })
+        .finally(() => {
+          loading('.popup_type_profile', false);
+          }) 
     }
 });
 
@@ -174,13 +177,14 @@ const placePopup = new PopupWithForm(
       })
         .then((inputPlaceInfo) => {
           cardList.addItem(renderCard(inputPlaceInfo, userInfo.getUserInfo()), 'start');
-          loading('.popup_type_add-place', false);
           placePopup.close();
         })
         .catch((err) => { 
           console.log(err)
-          loading('.popup_type_add-place', false)
-        })      
+        })
+        .finally(() => {
+          loading('.popup_type_add-place', false);
+          })
     }
   }
 )
